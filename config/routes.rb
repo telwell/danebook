@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 	resources :profiles, :only => [:show, :edit, :create, :update] do
     resource :posts, :only => [:show, :create, :destroy]
     resources :friendships, :only => [:create, :destroy, :index]
+    resources :photos, :only => [:index, :new, :create]
   end
 
   resource :session, :only => [:create, :destroy]

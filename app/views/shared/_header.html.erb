@@ -11,7 +11,7 @@
 	<div class="row col-md-offset-3">
 		<div class="col-md-2 navbar_button"><p><%= link_to "Timeline", profile_posts_path(@user.profile) %></p></div>
 		<div class="col-md-2 navbar_button"><p><%= link_to "About", profile_path(@user.profile) %></p></div>
-		<div class="col-md-2 navbar_button"><p><%= link_to "Photos", '/static_pages/photos' %></p></div>
+		<div class="col-md-2 navbar_button"><p><%= link_to "Photos", profile_photos_path(@user.profile) %></p></div>
 		<div class="col-md-2 navbar_button"><p><%= link_to "Friends", profile_friendships_path(@user.profile) %></p></div>
 		<% if belongs_to_current_profile_user? && profile_show_page? %>
 			<span class="col-md-2 col-md-offset-2 align-right"><%= link_to "Edit Profile", edit_profile_path(@current_user.profile) %></span>

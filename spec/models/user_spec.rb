@@ -11,6 +11,7 @@ describe User do
     it { should have_many(:friendships) }
     it { should have_many(:inverse_friends) }
     it { should have_many(:inverse_friendships) }
+    it { should have_many(:photos) }
     it { should have_secure_password }
 
 	let(:user){ build(:user) }

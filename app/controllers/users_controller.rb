@@ -43,7 +43,8 @@ private
 									:birthday_year,
 									:birthday_month,
 									:birthday_day,
-									:gender
+									:gender, 
+									:avatar
 					)
 	end
 

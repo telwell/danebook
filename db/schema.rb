@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150914212622) do
+ActiveRecord::Schema.define(version: 20150915031701) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "author_id"
@@ -45,6 +45,20 @@ ActiveRecord::Schema.define(version: 20150914212622) do
   add_index "likes", ["likeable_id", "likeable_type"], name: "index_likes_on_likeable_id_and_likeable_type"
   add_index "likes", ["user_id"], name: "index_likes_on_user_id"
 
+  create_table "photos", force: :cascade do |t|
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.string   "title"
+    t.string   "description"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "user_id"
+  end
+
+  add_index "photos", ["user_id"], name: "index_photos_on_user_id"
+
   create_table "posts", force: :cascade do |t|
     t.integer  "author_id",  null: false
     t.string   "content"
@@ -70,14 +84,18 @@ ActiveRecord::Schema.define(version: 20150914212622) do
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
-    t.string   "last_name",       null: false
-    t.string   "email",           null: false
-    t.string   "password_digest", null: false
+    t.string   "last_name",           null: false
+    t.string   "email",               null: false
+    t.string   "password_digest",     null: false
     t.date     "birthday"
     t.integer  "gender"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.string   "auth_token"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true
