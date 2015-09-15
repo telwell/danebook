@@ -37,7 +37,7 @@ gem 'figaro'
 
 # This was giving me errors in my test environment
 group :development, :production do
-  gem 'aws-sdk'
+  gem 'aws-sdk', '< 2.0'
 end
 
 # Use Unicorn as the app server
