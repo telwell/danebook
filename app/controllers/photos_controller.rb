@@ -1,5 +1,7 @@
 class PhotosController < ApplicationController
 
+	before_filter :photo_from_url, :only => [:create]
+
 	def index
 		@profile = Profile.find(params[:profile_id])
 		@user = @profile.user
@@ -13,7 +15,6 @@ class PhotosController < ApplicationController
 	end
 
 	def create
-		@photo = Photo.new(photo_params)
 		@photo.user_id = current_user.id
     if @photo.save
       flash[:success] = "Photo added!"
@@ -28,6 +29,15 @@ private
 	
 	def photo_params
 		params.require(:photo).permit(:photo, :user_id, :title, :description)
+	end
+
+	def photo_from_url
+		if params[:photo_url].present?
+			@photo = Photo.new
+			@photo.photo_from_url(params[:photo_url])
+		else
+			@photo = Photo.new(photo_params)
+		end
 	end
 
 end

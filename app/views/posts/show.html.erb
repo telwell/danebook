@@ -34,7 +34,7 @@
 					<% if @friends %>
 						<ul class="sidebar-friends-list">
 							<% @friends.each do |friend| %>
-								<li><%= link_to friend.name, profile_path(friend) %></li>
+								<li><%= link_to friend.name, profile_path(friend.profile) %></li>
 							<% end %>
 						</ul>
 					<% end %>

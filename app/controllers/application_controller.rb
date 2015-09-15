@@ -58,5 +58,4 @@ private
 		session[:referrer_controller] = controller_name
 	end
 
-
 end

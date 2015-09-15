@@ -33,7 +33,6 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Photo gems
 gem 'paperclip'
-gem 'figaro'
 
 # This was giving me errors in my test environment
 group :development, :production do

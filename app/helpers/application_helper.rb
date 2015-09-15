@@ -31,6 +31,36 @@ module ApplicationHelper
   end
 
 
+  # This helper will return true if the profile of the current user
+  # has been friended by the current user. False otherwise.
+  def friend_of_current_user?
+    current_user.friends.pluck(:id).include?(@profile.user.id) ? 
+    current_user.friendships.find_by_friend_id(@profile.user.id) : false
+  end
+
+
+  # Will return the proper action button for our various
+  # pages. Add/Remove Friend, Edit Profile, Add Photo.
+  def which_action_button?
+    if belongs_to_current_profile_user?
+      if controller_name == 'photos'
+        link_to "Add New Photo", new_profile_photo_path(@profile), class: "btn btn-primary inline pull-right"
+      elsif controller_name == 'profiles'        
+        link_to "Edit Profile", edit_profile_path(@current_user.profile), class: "btn btn-info inline pull-right"
+      end
+    else
+      if friendship_id = friend_of_current_user?
+        link_to "Remove Friend", profile_friendship_path(:profile_id => @profile, :id => friendship_id), method: :delete, class: "btn btn-danger inline pull-right"
+      else
+        #We don't want to show this on our own profile
+        unless belongs_to_current_profile_user?
+          link_to "Add Friend", profile_friendships_path(@profile), method: :post, class: "btn btn-success inline pull-right"
+        end
+      end
+    end
+  end
+
+
 	def bootstrap_class_for flash_type
     case flash_type
       when :success
