@@ -33,8 +33,12 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Photo gems
 gem 'paperclip'
-gem 'aws-sdk'
 gem 'figaro'
+
+# This was giving me errors in my test environment
+group :development, :production do
+  gem 'aws-sdk'
+end
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -45,22 +49,16 @@ gem 'figaro'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-
   gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
-
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-
   # Sqlite3 for development and test
   gem 'sqlite3'
-
   # Let's get some TESTS going!
   gem 'rspec-rails'
   gem 'factory_girl_rails', '~> 4.0'
-
 end
 
 group :test do

@@ -7,7 +7,9 @@
 # Ignore bundler config.
 /.bundle
 
-aws.yml
+# Don't push our S3 configs up
+/config/aws.yml
+/config/application.yml
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
