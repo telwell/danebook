@@ -9,8 +9,8 @@
 <!-- Main navbar under hero image and headshot -->
 <div id="about_navbar" class="col-md-10">
 	<div class="row col-md-offset-3">
-		<div class="col-md-2 navbar_button"><p><%= link_to "Timeline", profile_posts_path(@user.profile) %></p></div>
-		<div class="col-md-2 navbar_button"><p><%= link_to "About", profile_path(@user.profile) %></p></div>
+		<div class="col-md-2 navbar_button"><p><%= link_to "Timeline", profile_posts_path(current_user.profile) %></p></div>
+		<div class="col-md-2 navbar_button"><p><%= link_to "About", profile_path(current_user.profile) %></p></div>
 		<div class="col-md-2 navbar_button"><p><%= link_to "Photos", '/static_pages/photos' %></p></div>
 		<div class="col-md-2 navbar_button"><p><%= link_to "Friends", '/static_pages/friends' %></p></div>
 		<% if belongs_to_current_profile_user? && profile_show_page? %>

@@ -12,7 +12,7 @@ feature 'User functionality' do
   # Unauthenticated user cannot access other pages
   scenario "user cannot access other pages without signing in" do
     visit profile_posts_path(user)
-    expect(current_path).to  eq(root_path)
+    expect(current_path).to eq(root_path)
     expect(page).to have_content "Must be signed in to view this page!"
   end
 

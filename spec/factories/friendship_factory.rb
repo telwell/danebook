@@ -1,6 +1,6 @@
 FactoryGirl.define do
-  factory :friendship do
-    
+  
+  factory :friendship do 	  
   end
 
 end

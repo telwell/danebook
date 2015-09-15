@@ -24,6 +24,13 @@ FactoryGirl.define do
 			end
 		end
 
+		factory :user_with_friend do
+			after(:create) do |user|
+				another_user = create(:user)
+				friend = create(:friendship, :user_id => user.id, :friend_id => another_user.id )
+			end
+		end
+
 	end
 	
 end
