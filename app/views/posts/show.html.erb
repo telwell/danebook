@@ -31,7 +31,13 @@
 			<section class="module">
 				<h3 class="module-title">Friends</h3>
 				<div class="module-content">
-					<p>Content goes here.</p>
+					<% if @friends %>
+						<ul class="sidebar-friends-list">
+							<% @friends.each do |friend| %>
+								<li><%= link_to friend.name, profile_path(friend) %></li>
+							<% end %>
+						</ul>
+					<% end %>
 				</div>
 			</section>
 

@@ -9,10 +9,10 @@
 <!-- Main navbar under hero image and headshot -->
 <div id="about_navbar" class="col-md-10">
 	<div class="row col-md-offset-3">
-		<div class="col-md-2 navbar_button"><p><%= link_to "Timeline", profile_posts_path(current_user.profile) %></p></div>
-		<div class="col-md-2 navbar_button"><p><%= link_to "About", profile_path(current_user.profile) %></p></div>
+		<div class="col-md-2 navbar_button"><p><%= link_to "Timeline", profile_posts_path(@user.profile) %></p></div>
+		<div class="col-md-2 navbar_button"><p><%= link_to "About", profile_path(@user.profile) %></p></div>
 		<div class="col-md-2 navbar_button"><p><%= link_to "Photos", '/static_pages/photos' %></p></div>
-		<div class="col-md-2 navbar_button"><p><%= link_to "Friends", '/static_pages/friends' %></p></div>
+		<div class="col-md-2 navbar_button"><p><%= link_to "Friends", profile_friendships_path(@user.profile) %></p></div>
 		<% if belongs_to_current_profile_user? && profile_show_page? %>
 			<span class="col-md-2 col-md-offset-2 align-right"><%= link_to "Edit Profile", edit_profile_path(@current_user.profile) %></span>
 		<% end %>
@@ -24,10 +24,13 @@
 	<% if belongs_to_current_profile_user? && profile_show_page? %>
 		<%= link_to "Edit Profile", edit_profile_path(@current_user.profile), class: "btn btn-info inline pull-right" %>
 	<% else %>
-		<% if friendship_id = friends_of_current_user? %>
+		<% if friendship_id = friend_of_current_user? %>
 			<%= link_to "Remove Friend", profile_friendship_path(:profile_id => @profile, :id => friendship_id), method: :delete, class: "btn btn-danger inline pull-right" %>
 		<% else %>
-			<%= link_to "Add Friend", profile_friendships_path(@profile), method: :post, class: "btn btn-success inline pull-right" %>
+			<!-- We don't want to show this on our own profile -->
+			<% unless belongs_to_current_profile_user? %>
+				<%= link_to "Add Friend", profile_friendships_path(@profile), method: :post, class: "btn btn-success inline pull-right" %>
+			<% end %>
 		<% end %>
 		
 	<% end %>

@@ -37,6 +37,10 @@ class User < ActiveRecord::Base
 	def name
 		first_name + ' ' + last_name
 	end
+
+	def friend_count
+		self.friends.count
+	end
 	
 	def generate_token
 		begin

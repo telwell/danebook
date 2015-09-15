@@ -13,6 +13,7 @@ class PostsController < ApplicationController
 	def show
 		@profile = Profile.find(params[:profile_id])
 		@user = @profile.user
+		@friends = @user.friends
 		@post = Post.new
 		@comment = Comment.new
 	end

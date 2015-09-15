@@ -1,5 +1,12 @@
 class FriendshipsController < ApplicationController
 	
+	def index
+		@profile = Profile.find(params[:profile_id])
+		@user = @profile.user
+		@friendships = @user.friendships
+	end
+	
+
 	def create
 		@profile = Profile.find(params[:profile_id])
 		@friendship = current_user.friendships.build(:friend_id => @profile.user.id)
@@ -11,6 +18,7 @@ class FriendshipsController < ApplicationController
 			redirect_to profile_path(@profile)
 		end
 	end
+
 
 	def destroy
 		@friendship = current_user.friendships.find(params[:id])

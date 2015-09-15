@@ -1,3 +1,48 @@
 // Place all the styles related to the friendships controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.all-friends-container {
+	.profile-friend-container:nth-child(odd){
+		float: left;
+		margin-left: 30px;
+	}
+
+	.profile-friend-container:nth-child(even){
+		float: right;
+		margin-right: 30px;
+	}
+	
+	.profile-friend-container {
+		height: 100px;
+		border: 1px solid #B6B6B6;
+		width: 45%;
+		margin-top: 20px;
+	}
+
+	.friend-box-column-middle{
+		margin-top: 25px;
+
+		p {
+			margin: 0px;
+			padding: 0px;
+		}
+
+		.friend-count{
+			font-style: italic;
+			color: #B6B6B6;
+		}
+	}
+
+	.friend-box-column-right{
+		// So that we can vertically align the btn
+		height: 100%;
+
+		.profile-unfriend-btn{
+			position: relative;
+		  top: 50%;
+		  transform: translateY(-50%);
+		}
+	}
+
+}
