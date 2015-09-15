@@ -58,4 +58,25 @@ private
 		session[:referrer_controller] = controller_name
 	end
 
+	def commentable_type_from_referrer
+		path_array = URI.parse(request.referrer).path.split("/")
+		if path_array.include?("photos")
+			"Photo"
+		elsif path_array.include?("posts")
+			"Post"
+		end
+	end
+
+	def commentable_id_from_referrer
+		if params[:referrer_id]
+			# This means that we're coming from a Post which 
+			# doesn't have the post.id in the path
+			params[:referrer_id]
+		else
+			path_array = URI.parse(request.referrer).path.split("/")
+			# We want to return the last item in this array since they're nested
+			path_array[-1]
+		end
+	end
+
 end

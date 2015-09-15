@@ -28,7 +28,9 @@
 						</div>
 
 						<div class="col-sm-4 friend-box-column-right">
-							<%= link_to "Remove Friend", profile_friendship_path(:profile_id => @profile, :id => friendship.id), method: :delete, class: "btn btn-danger profile-unfriend-btn" %>
+							<% if belongs_to_current_profile_user? %>
+								<%= link_to "Remove Friend", profile_friendship_path(:profile_id => @profile, :id => friendship.id), method: :delete, class: "btn btn-danger profile-unfriend-btn" %>
+							<% end %>
 						</div>
 
 					</section>

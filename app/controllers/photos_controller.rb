@@ -8,6 +8,13 @@ class PhotosController < ApplicationController
 		@photos = @user.photos
 	end
 
+	def show
+		@profile = Profile.find(params[:profile_id])
+		@user = @profile.user
+		@photo = Photo.find(params[:id])
+		@comment = Comment.new
+	end
+
 	def new
 		@profile = Profile.find(params[:profile_id])
 		@user = @profile.user

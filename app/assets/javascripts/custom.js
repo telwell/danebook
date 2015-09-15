@@ -9,7 +9,7 @@ $( document ).ready(function() {
   });
 
   $('.photo-container').hover(function(){
-  	$(this).children('.photo-hover-block').toggle();
+  	$(this).children('.photo-hover-block').toggle(400);
   });
 
 });

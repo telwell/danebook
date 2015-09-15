@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
 	before_filter :set_comment_params, :only => [:create]
 
 	def create
-		@comment = Comment.new(comment_params)	
+		@comment.content = params[:comment][:content]
 		if @comment.save
 			flash[:success] = 'Thanks for your comment!'
 			redirect_to request.referrer
@@ -43,9 +43,12 @@ private
 	# Need to set the other params for the comment via params and session
 	# QUESTION: THIS ALL SEEMS SMELLY, WHAT'S A BETTER WAY TO SET THESE?!
 	def set_comment_params
-		params[:comment][:commentable_type] = session[:referrer_controller].capitalize.singularize
-		params[:comment][:commentable_id] = params[:referrer_id]
-		params[:comment][:author_id] = @current_user.id
+		# I'm going to get these from the request.referrer, this way it's a 
+		# bit harder to actually spoof.
+		@comment = Comment.new
+		@comment.commentable_type = commentable_type_from_referrer
+		@comment.commentable_id = commentable_id_from_referrer
+		@comment.author_id = @current_user.id
 	end
 
 end
