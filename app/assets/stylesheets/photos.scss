@@ -4,9 +4,25 @@
 .all-photos-container {
 
 	.photo-container {
+		height: 200px;
+		margin-bottom: 40px;
+
+		.photo-hover-block {
+			width: 100%;
+			position: relative;
+			bottom: 40px;
+			height: 40px;
+			background-color: #000;
+			opacity: .6;
+			color: white;
+			text-align: center;
+			line-height: 40px;
+			display: none;
+		}
 
 		img {
 			width: 100%;
+			height: 100%;
 		}
 	}
 }

@@ -8,4 +8,8 @@ $( document ).ready(function() {
   	$('#post-'+$(this).attr('id')+' .post-comment-wrapper').toggle('slow');
   });
 
+  $('.photo-container').hover(function(){
+  	$(this).children('.photo-hover-block').toggle();
+  });
+
 });
