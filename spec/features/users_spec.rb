@@ -47,7 +47,7 @@ feature 'User functionality' do
     fill_in('email', :with => user.email)
     fill_in('password', :with => "not_password")
     click_on('Login')
-    # expect(page).to have_content "Couldn't log you in, please try again."
+    expect(page).to have_content "Couldn't log you in, please try again."
   end
 
   # This is the initial test, signing out is now

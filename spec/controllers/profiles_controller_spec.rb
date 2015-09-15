@@ -3,6 +3,11 @@ require 'rails_helper'
 describe ProfilesController do
 
 
+	# TODO: 
+	context 'unauthenticated user' do
+
+	end
+
 	context 'logged in user' do
 		
 		# Remember, the profile association is the only

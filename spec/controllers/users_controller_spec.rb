@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe UsersController do
-
+	
 
 	# All the SHOULDA's
 	it { should use_before_action(:must_be_signed_in) }
@@ -37,9 +37,6 @@ describe UsersController do
 
 
 		describe 'POST #create' do
-			
-
-			let(:user){ build(:user) }
 
 
 			it 'creates a User' do

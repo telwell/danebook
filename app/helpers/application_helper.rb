@@ -18,11 +18,7 @@ module ApplicationHelper
 
   # Give us the title of the current page
   def get_page_name
-    if controller_name == "profiles"
-      "About"
-    else
-      controller_name.titleize
-    end
+    controller_name == "profiles" ? "About" : controller_name.titleize
   end
 
 

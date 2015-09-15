@@ -13,7 +13,7 @@ module Likeable
   end
 
 
-  # Return the like_id given the post and the user
+  # Return the like_id given the likeable and the user
   def like_id(user)
     like = self.likes.where("user_id = ? ", user.id)
     like.first.id

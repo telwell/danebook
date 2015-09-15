@@ -18,6 +18,8 @@ class UsersController < ApplicationController
 			
 			# Once the user is created we'll want to create a blank
 			# profile for them.
+			# TODO: Move this to the User model as an after(:create) so 
+			# that the whole thing blows up if the profile fails.
 			Profile.create(:user_id => @user.id)
 			
 			# TODO: Redirect to profile_path

@@ -8,7 +8,7 @@ describe "posts/show.html.erb" do
 		let(:post){ create(:post, :author_id => user.id) }
 		# Need this comment in order to re-render the page
 		# with the form_for for comments.
-		let(:comment){ create(:comment, :author_id => user.id, :commentable_id => post.id)}
+		let(:comment){ create(:comment, :author_id => user.id, :commentable_id => post.id) }
 
 		before do
 			
@@ -31,6 +31,7 @@ describe "posts/show.html.erb" do
 			def view.current_user
 				@user
 			end
+
 
 			def view.controller_name
 				"posts"
