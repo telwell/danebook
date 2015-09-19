@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # or create an account.
   root 'users#new'
   
-  resources :users, :only => [:new, :create]
+  resources :users, :only => [:new, :create, :update]
 
   # There's only one profile associated with an
 	# individual user (and no need for an index page)
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 	resources :profiles, :only => [:show, :edit, :create, :update] do
     resource :posts, :only => [:show, :create, :destroy]
     resources :friendships, :only => [:create, :destroy, :index]
-    resources :photos, :only => [:index, :new, :create, :show]
+    resources :photos, :only => [:index, :new, :create, :show, :destroy]
   end
 
   resource :session, :only => [:create, :destroy]

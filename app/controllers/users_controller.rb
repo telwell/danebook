@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 	# logged in viewing profiles
 
 	skip_before_filter :must_be_signed_in, :only => [:new, :create]
-
+	
 	def new
 		@user = User.new
 	end
@@ -30,9 +30,29 @@ class UsersController < ApplicationController
 		end
 	end
 
+	# QUESTION: This doesn't seem like the best way to do this, perhaps
+	# using a custom route? I wanted to stay RESTful but think that this
+	# might be a place where it makes sense not to.
+	def update
+		@user = User.find(params[:id])
+		if params[:avatar_photo]
+			@user.avatar_id =  params[:avatar_photo].to_i
+		elsif params[:cover_photo]
+			@user.cover_photo_id =  params[:cover_photo].to_i
+		end
+
+		if @user.save
+			flash[:success] = "Photo Set!"
+			redirect_to request.referrer
+		else
+			flash[:error] = "Couldn't set photo!"
+			redirect_to request.referrer
+		end
+	end
+
 
 private
-
+	
 	def user_params
 		params.require(:user).
 					permit(:first_name,
@@ -44,7 +64,8 @@ private
 									:birthday_month,
 									:birthday_day,
 									:gender, 
-									:avatar
+									:avatar_id, 
+									:cover_photo_id
 					)
 	end
 

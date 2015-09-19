@@ -10,18 +10,31 @@
 		<!-- Show Photo Main -->
 		<div class="col-sm-8 show-photo-main">
 			<%= image_tag @photo.photo.url, class: "show-photo" %>
+			<% if belongs_to_current_profile_user? %>
+				<p><%= link_to "Set as Profile Photo", user_path(@user.id, :avatar_photo => @photo.id), :method => :patch %></p>
+				<p><%= link_to "Set as Cover Photo", user_path(@user.id, :cover_photo => @photo.id), :method => :patch %></p>
+				<p><%= link_to "Delete Photo", profile_photo_path(@profile, @photo), :method => :delete, :data => { :confirm => "Are you sure?" } %></p>
+			<% end %>
 		</div><!-- / Show Photo Main -->
 
+
+		<!-- BEGIN SIDEBAR SECTION -->
 		<div class="col-sm-4 show-photo-sidebar">
 			<section class="posted-by-container col-sm-12">
-				<div class="posted-by-thumb col-sm-4">
-					<p>PHOTO HERE</p>
+				<div class="posted-by-thumb col-sm-3">
+					<%= image_tag user_avatar(@user), class: "user-avatar-thumb" %>
 				</div>
-				<div class="posted-by-meta col-sm-8">
+				<div class="posted-by-meta col-sm-9">
 					<p><%= link_to @user.name, profile_path(@profile) %></p>
-					<p><%= @photo.created_at.strftime("%b %d, %Y") %></p>
+					<p class="created-at"><%= @photo.created_at.strftime("%b %d, %Y") %></p>
 				</div>
 			</section>
+
+			<!-- Display the like link -->
+			<section class="like-link-container col-sm-12">
+				<%= display_like_link(@photo) %>				
+			</section>
+
 
 			<!-- Display the comment form -->
 			<section class="show-photo-comment-form">
@@ -35,15 +48,18 @@
 
 			<!-- Display any comments for this photo -->
 			<section class="show-photo-comments">
-
 				<% @photo.comments.each do |comment| %>
 					<div class="comment col-sm-12">
-						<div class="comment-header">
+
+						<div class="comment-thumb col-sm-3">
+							<%= image_tag user_avatar(comment.author), class: "user-avatar-thumb" %>
+						</div>
+						<div class="col-sm-9">
 							<p class="comment-author"><%= link_to comment.author.name, profile_path(comment.author.profile) %></p>
 							<p class="comment-meta"><%= comment.created_at.strftime( 'said on %A %m/%d/%y' ) %></p>
 						</div>
 
-						<div class="comment-content">
+						<div class="comment-content col-sm-12">
 							<p><%= comment.content %></p>
 							<p>
 								<%= display_like_link(comment) %>

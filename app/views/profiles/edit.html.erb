@@ -3,29 +3,11 @@
 
 <!-- Content -->
 	<div id="content" class="col-md-10 col-md-offset-1">
-		<div id="hero_image">
-			<p><%= "#{@current_user.first_name} #{@current_user.last_name}" %></p>
-		</div>
 		
-		<div id="headshot_image">
-			<%= image_tag "headshot.png" %>
-		</div>
-		
-		<!-- Main navbar under hero image and headshot -->
-		<div id="about_navbar" class="col-md-10">
-			<div class="row col-md-offset-3">
-				<div class="col-md-2 navbar_button"><p><%= link_to "Timeline", '/static_pages/timeline' %></p></div>
-				<div class="col-md-2 navbar_button"><p><%= link_to "About", profile_path(@current_user.profile) %></p></div>
-				<div class="col-md-2 navbar_button"><p><%= link_to "Photos", '/static_pages/photos' %></p></div>
-				<div class="col-md-2 navbar_button"><p><%= link_to "Friends", '/static_pages/friends' %></p></div>
-			</div>
-		</div>
-		
-		<div id="about_header" class="col-md-12">
-			<h2 class="inline">Edit Profile</h2>
-		</div>
+		<%= render partial: '/shared/header' %>
 		
 		<div id="row">
+		
 			<div id="about_info_container">
 
 				<!-- Begin the form_for, not nesting things associated 

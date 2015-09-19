@@ -41,6 +41,8 @@ module ApplicationHelper
 
   # Will return the proper action button for our various
   # pages. Add/Remove Friend, Edit Profile, Add Photo.
+  # TODO: Would make sense to make this into my switchboard and 
+  # call the other action button methods from here. 
   def which_action_button?
     if belongs_to_current_profile_user?
       if controller_name == 'photos'
@@ -58,6 +60,18 @@ module ApplicationHelper
         end
       end
     end
+  end
+
+
+  # Get the avatar for a given user.
+  def user_avatar(user)
+    user.avatar ? user.avatar.photo.url(:thumb) : "default-avatar.jpg"
+  end
+
+
+  # Get the cover photo for a given user.
+  def user_cover_photo(user)
+    user.cover_photo.present? ? user.cover_photo.photo.url : "default-cover-image.jpg"
   end
 
 

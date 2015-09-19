@@ -15,7 +15,14 @@
 							is there a way I can change this or am I stuck for now?-->
 				<div class="col-sm-3 photo-container">
 					<div class="photo-image">
-						<%= link_to image_tag(photo.photo.url(:thumb)), profile_photo_path(@profile, photo) %>
+						<!-- We only want the friends of users to be able to click
+									the link and go to the show page. We also want to make sure
+									that we can click on our own images. -->
+						<% if friend_of_current_user? || belongs_to_current_profile_user? %>
+							<%= link_to image_tag(photo.photo.url(:thumb)), profile_photo_path(@profile, photo) %>
+						<% else %>
+							<%= image_tag(photo.photo.url(:thumb)) %>
+						<% end %>
 					</div>
 					<div class="photo-hover-block"><%= "Uploaded #{photo.created_at.strftime("%b %d, %Y")}" %></div>
 				</div>

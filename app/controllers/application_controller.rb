@@ -67,6 +67,7 @@ private
 		end
 	end
 
+
 	def commentable_id_from_referrer
 		if params[:referrer_id]
 			# This means that we're coming from a Post which 

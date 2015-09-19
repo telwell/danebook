@@ -1,9 +1,12 @@
 <div id="hero_image">
 	<p><%= "#{@profile.user.first_name} #{@profile.user.last_name}" %></p>
+	<section id="user-cover-photo-container">
+		<%= image_tag user_cover_photo(@user) %>
+	</section>
 </div>
 
 <div id="headshot_image">
-	<%= image_tag "headshot.png" %>
+	<%= image_tag user_avatar(@user), class: "user-avatar" %>
 </div>
 
 <!-- Main navbar under hero image and headshot -->

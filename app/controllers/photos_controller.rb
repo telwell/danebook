@@ -32,6 +32,18 @@ class PhotosController < ApplicationController
     end
 	end
 
+	def destroy
+		@profile = Profile.find(params[:profile_id])
+		@photo = Photo.find(params[:id])
+		if @photo.destroy
+			flash[:success] = "Photo deleted successfully!"
+			redirect_to profile_path(@profile.id)
+		else
+			flash[:error] = "Error deleting photo"
+			render :show
+		end
+	end
+
 private
 	
 	def photo_params
