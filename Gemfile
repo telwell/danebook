@@ -70,4 +70,6 @@ group :development do
   gem "binding_of_caller"
   # MOAR TESTING
   gem 'guard-rspec', require: false
+  # See emails in development
+  gem "letter_opener"
 end

@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
 	# And any filters will go here
 
 		before_create :generate_token
+		after_create :send_welcome_email
 
 	# End filters
 
@@ -44,10 +45,12 @@ class User < ActiveRecord::Base
 		first_name + ' ' + last_name
 	end
 
+
 	def friend_count
 		self.friends.count
 	end
 	
+
 	def generate_token
 		begin
 			self[:auth_token] = SecureRandom.urlsafe_base64
@@ -62,4 +65,7 @@ class User < ActiveRecord::Base
 	end
 
 
+	def send_welcome_email
+		WelcomeMailer.welcome(self).deliver_now!
+	end
 end

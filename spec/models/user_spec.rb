@@ -90,5 +90,14 @@ describe User do
             expect{ user.destroy }.to change(Profile, :count).by(-1)
         end
     end
+
+    context 'welcome mailer' do
+        # We want this to be build otherwise the :create will trigger
+        # our after_create filter and make two emails!
+        
+        it 'can send a welcome email' do
+            expect{ user.send_welcome_email }.to change {ActionMailer::Base.deliveries.count }.by(1)
+        end
+    end
 	
 end
