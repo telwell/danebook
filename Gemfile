@@ -32,6 +32,7 @@ gem 'bcrypt', '~> 3.1.7'
 # Photo gems
 gem 'paperclip'
 
+
 # This was giving me errors in my test environment
 group :development, :production do
   gem 'aws-sdk', '< 2.0'

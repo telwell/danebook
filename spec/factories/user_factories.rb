@@ -17,12 +17,30 @@ FactoryGirl.define do
 			create(:profile, :user_id => user.id)
 		end
 
+
 		factory :user_with_post_like do
 			after(:create) do |user|
 				post = create( :post, :author_id => user.id )
 				create( :like, :user_id => user.id, :likeable_id => post.id )
 			end
 		end
+
+
+		factory :user_with_post_comment do
+			after(:create) do |user|
+				post = create( :post, :author_id => user.id )
+				create( :comment, :author_id => user.id, :commentable_id => post.id )
+			end
+		end
+
+
+		factory :user_with_photo_comment do
+			after(:create) do |user|
+				photo = create( :photo, :user_id => user.id )
+				create( :comment, :author_id => user.id, :commentable_id => photo.id )
+			end
+		end
+
 
 		factory :user_with_friend do
 			after(:create) do |user|

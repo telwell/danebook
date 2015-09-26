@@ -7,5 +7,10 @@ FactoryGirl.define do
 		commentable_type			"Post"
 		content 							"Look, a comment!"
 	end
+
+	factory :photo_comment do
+		commentable_type 			"Photo"
+		content								"Your photo is great!"
+	end
 	
 end

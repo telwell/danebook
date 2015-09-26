@@ -5,6 +5,7 @@ class Photo < ActiveRecord::Base
 
 	# Begin Associations
 		belongs_to :user
+		has_one :profile, :through => :user
 		has_one :avatar_user, :class_name => "User", :foreign_key => :avatar_id, :dependent => :nullify
 		has_one :cover_photo_user, :class_name => "User", :foreign_key => :cover_photo_id, :dependent => :nullify
 		has_many :comments, :as => :commentable

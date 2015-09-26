@@ -45,9 +45,10 @@ private
 	def set_comment_params
 		# I'm going to get these from the request.referrer, this way it's a 
 		# bit harder to actually spoof.
+		# NOTE: Had to include .to_i for commentable_id otherwise it wasn't saving properly.
 		@comment = Comment.new
 		@comment.commentable_type = commentable_type_from_referrer
-		@comment.commentable_id = commentable_id_from_referrer
+		@comment.commentable_id = commentable_id_from_referrer.to_i
 		@comment.author_id = @current_user.id
 	end
 
