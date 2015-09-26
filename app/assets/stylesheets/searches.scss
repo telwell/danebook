@@ -1,0 +1,52 @@
+.search-friends-container {
+	
+	.profile-friend-container {
+		height: 200px;
+		border: 1px solid #B6B6B6;
+		margin-top: 20px;
+	}
+
+	.friend-box-column-middle{
+		margin-top: 25px;
+
+		p {
+			margin: 0px;
+			padding: 0px;
+		}
+
+		.friend-count{
+			font-style: italic;
+			color: #B6B6B6;
+		}
+	}
+
+	.friend-box-column-right{
+		// So that we can vertically align the btn
+		height: 100%;
+
+		.profile-unfriend-btn{
+			position: relative;
+		  top: 50%;
+		  transform: translateY(-50%);
+		}
+	}
+}
+
+#search-query-info {
+	margin-top: 20px;
+	margin-bottom: 0px;
+
+	p {
+		color: #B6B6B6;
+		font-style: italic;
+		font-weight: bold;
+	}
+}
+
+#search-title-bar {
+	background-color: #BBB;
+
+	h2 {
+		padding: 0px;
+	}
+}

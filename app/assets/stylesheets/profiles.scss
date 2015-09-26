@@ -39,6 +39,24 @@
 	height: 50px;
 }
 
+.user-avatar-search {
+	width: 160px;
+	height: 160px;
+}
+
 .friendship-thumb {
 	margin-top: 20px;
+}
+
+// Top Navbar
+#navbar {
+
+	#main-navigation-search {
+		padding-top: 35px;
+
+		.search-bar {
+			width: 80%;
+		}
+	}
+
 }

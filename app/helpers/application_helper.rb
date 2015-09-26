@@ -38,6 +38,18 @@ module ApplicationHelper
     current_user.friendships.find_by_friend_id(@profile.user.id) : false
   end
 
+  def friend_of_current_user(user)
+    current_user.friends.pluck(:id).include?(user.id) ? 
+    true : false
+  end
+
+
+  # Pass in the user object which you'd like to determine is friends with 
+  # the current_user or not. Returns the friendship ID if they are.
+  def get_friendship_id(user)
+  	Friendship.where("user_id = ? AND friend_id = ?", current_user.id, user.id).first.id
+  end
+
 
   # Will return the proper action button for our various
   # pages. Add/Remove Friend, Edit Profile, Add Photo.

@@ -1,10 +1,20 @@
 <!-- Building the navbar -->
 <div id="navbar">
-	<div id="navbar_left" class="col-md-7">
+	
+	<div id="navbar_left" class="col-sm-4">
 		<h2><%= link_to "TrevBook", (@current_user ? profile_path(@current_user.profile) : root_url) %></h2>
 	</div>
+
+	<div id="main-navigation-search" class="col-sm-4">
+		<% if signed_in_user? %>
+			<%= form_tag profile_search_path(@profile), :method => 'get' do %>
+			  <%= text_field_tag :query, nil, { class: "search-bar", placeholder: "Search Users" } %>
+			  <%= submit_tag "Search", class: "btn btn-primary" %>
+			<% end %>
+		<% end %>
+	</div>
 	
-	<div id="navbar_right" class="col-md-5">
+	<div id="navbar_right" class="col-sm-4">
 		
 		<% if signed_in_user? %>
 

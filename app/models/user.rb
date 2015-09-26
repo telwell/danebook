@@ -41,6 +41,7 @@ class User < ActiveRecord::Base
 	validates :last_name, :email, :presence => true
 	validates :gender, inclusion: { in: [1,2], message: "not selected" }
 
+
 	def name
 		first_name + ' ' + last_name
 	end
@@ -67,5 +68,14 @@ class User < ActiveRecord::Base
 
 	def send_welcome_email
 		WelcomeMailer.welcome(self).deliver_now!
+	end
+
+
+	def self.search(query)
+		if query
+      where("first_name LIKE ? OR last_name LIKE ?", "%#{query}%", "%#{query}%")
+    else
+      where("")
+    end
 	end
 end

@@ -15,6 +15,7 @@ describe "users/new.html.erb" do
 			def view.current_user
 				@user
 			end
+
 		end
 
 
@@ -25,6 +26,8 @@ describe "users/new.html.erb" do
 		it 'shows the users name' do
 			assign(:user, user)
 			assign(:current_user, user)
+			assign(:profile, user.profile)
+			allow(view).to receive(:params).and_return({profile_id: user.profile.id})
 			render
 			expect(rendered).to match(user.first_name)
 		end

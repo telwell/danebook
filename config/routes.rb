@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 	# really a need for that now.
 	resources :profiles, :only => [:show, :edit, :create, :update] do
     resource :posts, :only => [:show, :create, :destroy]
+    resource :search, :only => [:show]
     resources :friendships, :only => [:create, :destroy, :index]
     resources :photos, :only => [:index, :new, :create, :show, :destroy]
   end
