@@ -7,6 +7,9 @@ class UsersController < ApplicationController
 	
 	def new
 		@user = User.new
+		if signed_in_user?
+			@profile = current_user.profile
+		end
 	end
 
 	def create
