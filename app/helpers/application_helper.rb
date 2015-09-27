@@ -38,6 +38,7 @@ module ApplicationHelper
     current_user.friendships.find_by_friend_id(@profile.user.id) : false
   end
 
+
   def friend_of_current_user(user)
     current_user.friends.pluck(:id).include?(user.id) ? 
     true : false
@@ -48,6 +49,11 @@ module ApplicationHelper
   # the current_user or not. Returns the friendship ID if they are.
   def get_friendship_id(user)
   	Friendship.where("user_id = ? AND friend_id = ?", current_user.id, user.id).first.id
+  end
+
+
+  def is_front_page?
+  	(controller_name == "users" && action_name == "new") ? true : false
   end
 
 

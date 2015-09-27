@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 	# logged in viewing profiles
 
 	skip_before_filter :must_be_signed_in, :only => [:new, :create]
+	before_filter :redirect_signed_in_user, :only => [:new]
 	
 	def new
 		@user = User.new
@@ -79,6 +80,10 @@ private
 		else
 			Date.parse("#{params[:birthday_year]}-#{params[:birthday_month]}-#{params[:birthday_day]}")
 		end
+	end
+
+	def redirect_signed_in_user
+		redirect_to profile_newsfeed_path(current_user.profile) if signed_in_user?
 	end
 
 end

@@ -1,0 +1,124 @@
+<div id="wrapper" class="container-fluid">
+<%= render partial: '/shared/main_navbar' %>
+
+<div id="content" class="col-md-10 col-md-offset-1">
+
+	<main class="row">
+		
+		<!-- Sidebar
+					TODO: This can get it's own partial -->
+		<aside id="sidebar" class="col-sm-4">
+			
+			<section class="newsfeed-module">
+				<div class="col-sm-12">
+					<div class="newsfeed-module-image col-sm-4">
+						<%= image_tag user_avatar(@user), class: "user-avatar-100" %>						
+					</div>
+					<div class="newsfeed-module-content col-sm-8">
+						<p><b><%= link_to @user.name, profile_path(@profile) %></b></p>
+						<p><%= link_to "Edit Profile", edit_profile_path(@profile) %></p>
+					</div>
+				</div>
+			</section>
+
+			<section class="newsfeed-module">
+				<div class="col-sm-12">
+					<div class="newsfeed-module-content">
+						<h3>Recently Active</h3>
+						<% @friends.each do |friend| %>
+							<% if recently_active?(friend) %>
+								<section class="col-sm-12">
+									<div class="newsfeed-module-image col-sm-2">
+										<%= image_tag user_avatar(friend), class: "user-avatar-thumb" %>	
+									</div>
+									<div class="newsfeed-module-recent-links col-sm-10">
+										<p><b><%= link_to friend.name, profile_path(friend.profile) %></b></p>
+										<p><small>Posted <%= time_ago_in_words(friend.posts.last.created_at) %> ago</small></p>
+									</div>
+								</section>
+							<% end %> <!-- / if recently active -->
+						<% end %> <!-- / @friends.each -->
+					</div> <!-- / Newsfeed module content -->
+				</div> <!-- / col-sm-12 -->
+			</section>
+
+			<section class="newsfeed-module">
+				<div class="col-sm-12">
+					<div class="newsfeed-module content">
+						<p class="text-center"><b><%= link_to "See All Your Friends", profile_friendships_path(@user.profile) %></b></p>
+					</div>
+				</div>
+			</section>
+
+		</aside>
+		<!-- / Sidebar -->
+
+		<!-- Newsfeed -->
+		<div class="col-sm-8">
+
+			<!-- Post on your timeline section -->
+			<section class="module clearfix no-border col-sm-12">
+				<h3 class="module-title">Post on your timeline</h3>
+				<%= form_for([:profile, @post], :url => profile_posts_path(@user.profile), :method => 'post') do |f| %>
+					<%= f.text_area :content, class: 'form-control', placeholder: 'Tell the world something...' %>
+					<%= f.submit 'Post', class: 'btn btn-primary pull-right' %>
+				<% end %>
+			</section>
+			<!-- / Post on your timeline section -->
+
+			<!-- Display Friend's Posts -->
+			<section id="friends_posts_container" class="col-sm-12">
+				<% @friends_posts.order('created_at DESC').each do |post| %>
+					<section class="post col-sm-12">
+						<div class="col-sm-2 post-thumb">
+							<%= image_tag user_avatar(post.author), class: "user-avatar-thumb" %>
+						</div>
+						<div class="post-header col-sm-10">
+							<p><%= link_to post.author.name, profile_path(post.profile) %></p>
+							<p class="post-meta"><%= post.created_at.strftime( 'Posted on %A %m/%d/%y' ) %></p>
+						</div>
+						<div class="post-content col-sm-12"><%= post.content %></div>
+					</section>
+
+					<div class="post-footer col-sm-12" id="post-<%= post.id %>">
+							
+						<div class="row">
+							<section class="post-footer-left col-sm-10">
+								<!-- In likes_helper. Displays 'like' link if the user hasn't 
+											liked the post yet. Otherwise shows 'unlike' -->
+								<%= display_like_link(post) %>
+								<%= link_to "Comment(#{post.comments.count})", '#', class: "show-comment", id: post.id %>
+							</section>
+
+							<section class="post-footer-right col-sm-2 pull-right">
+								<% if belongs_to_current_user?(post) %>
+									<%= link_to "Delete", profile_posts_path(post), method: :delete, data: { confirm: 'Are you sure?' } %>
+								<% end %>
+							</section>
+						
+						</div> <!-- /row -->
+
+						<!-- A bit of logic to show the first three likes if there are any.
+									TODO: May want to consider taking this out into a partial. -->
+						<% if post.likes.count > 0  %>
+							<ul>
+								<!-- COOL: I like this way of limiting the number of likes displayed -->
+								<% post.likes.first(3).each do |like| %>
+									<li><%= link_to like.user.name, profile_path(like.profile) %> liked this!</li>
+								<% end %>
+							</ul>
+						<% end %>
+
+						<%= render partial: '/comments/post_comments_form', locals: { comment: @comment, post: post }  %>
+
+					</div> <!-- /post-footer -->
+
+				<% end %> <!-- end @profile.posts.each do |post| statement -->
+			</section>
+			<!-- / Display Friend's Posts -->
+
+		</div><!-- / Newsfeed -->
+
+	</main>	<!-- /row -->
+
+</div> <!-- / content -->

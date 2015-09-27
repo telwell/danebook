@@ -62,7 +62,9 @@ private
 		path_array = URI.parse(request.referrer).path.split("/")
 		if path_array.include?("photos")
 			"Photo"
-		elsif path_array.include?("posts")
+		# QUESTION: Interesting way of doing this using set intersection.
+		# Thanks Stack Overflow!
+		elsif (path_array & ["posts", "newsfeed"]).present?
 			"Post"
 		end
 	end

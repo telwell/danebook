@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 			flash[:success] = "Successfully logged in!"
 			# TODO: This doesn't seem to be working on Heroku... verify
 			# that it's working locally too please?
-			redirect_to profile_path(@user.profile)
+			redirect_to profile_newsfeed_path(@user.profile)
 			
 		else
 			flash.now[:error] = "Couldn't log you in, please try again."

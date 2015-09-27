@@ -54,12 +54,14 @@ feature 'User functionality' do
   # delegated to the login macros.
   scenario "user can logout" do
     sign_in(user)
+    visit root_path
     click_link("Logout")
     expect(page).to have_content "You've been signed out."
   end
 
   scenario "user can edit profile" do
     sign_in(user)
+    visit profile_path(user.profile)
     # Scope!
     within("#about_header") do
       click_link("Edit Profile")
@@ -105,6 +107,24 @@ feature 'User functionality' do
     visit profile_posts_path(another_user)
     expect{ click_link("Like") }.to change(Like, :count).by(1)
     expect(page).to have_content("Liked!")
+  end
+
+  scenario "user gets sent to newsfeed on sign in" do 
+  	sign_in(user)
+  	expect(current_path).to eq(profile_newsfeed_path(user.profile))
+  end
+
+  scenario "signed in user cannot get to homepage" do
+  	sign_in(user)
+  	visit root_path
+  	expect(current_path).to eq(profile_newsfeed_path(user.profile))
+  end
+
+  scenario "user cannot view another user's newsfeed" do
+  	another_user = create(:user)
+  	sign_in(user)
+  	visit profile_newsfeed_path(another_user.profile)
+  	expect(current_path).to eq(profile_newsfeed_path(user.profile))
   end
 
 end

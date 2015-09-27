@@ -1,0 +1,31 @@
+// Place all the styles related to the newsfeeds controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.newsfeed-module {
+	margin-top: 20px;
+
+	.newsfeed-module-content {
+		margin-top: 20px;
+
+		p {
+			margin: 0 0 0 10px;
+			padding: 0px;
+		}
+	}
+
+	.newsfeed-module-recent-links {
+		margin-top: 15px;
+		line-height: 12px;
+
+		p {
+			margin: 0 0 0 10px;
+			padding: 0px;
+		}
+
+		small {
+			color: #BBB;
+			font-style: italic;
+		}
+	}
+}

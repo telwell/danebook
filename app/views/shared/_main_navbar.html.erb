@@ -6,7 +6,7 @@
 	</div>
 
 	<div id="main-navigation-search" class="col-sm-4">
-		<% if signed_in_user? %>
+		<% if signed_in_user? && !is_front_page? %>
 			<%= form_tag profile_search_path(@profile), :method => 'get' do %>
 			  <%= text_field_tag :query, nil, { class: "search-bar", placeholder: "Search Users" } %>
 			  <%= submit_tag "Search", class: "btn btn-primary" %>
