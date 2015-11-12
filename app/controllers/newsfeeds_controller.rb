@@ -17,6 +17,9 @@ class NewsfeedsController < ApplicationController
 
 
 private
+	
+	# TODO: Turn into model method :friends_posts or something like that. 
+	# generally not good to access the DB in controller...
 	def get_newsfeed_posts
 		friend_ids = @friends.pluck(:id)
 		# I did it this way because we want to return an 

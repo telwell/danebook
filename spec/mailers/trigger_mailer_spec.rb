@@ -45,7 +45,7 @@ describe TriggerMailer, type: :mailer do
   context 'user with a photo comment' do
   	let(:user){ create(:user) }
   	let(:photo){ create( :photo, :user_id => user.id ) }
-  	let(:comment){ build(:comment, :author_id => user.id, :commentable_id => photo.id) }
+  	let(:comment){ build(:photo_comment, :author_id => user.id, :commentable_id => photo.id) }
   	let(:mail){ TriggerMailer.new_comment(comment) }
 
   	before do
@@ -55,6 +55,7 @@ describe TriggerMailer, type: :mailer do
   	# TODO: This is super strange. The POST above has the commentable association working
   	# properly but this photo doesn't find it- it returns nil. Why is this happening? It's causing
   	# These two tests to fail. The error stems from trigger_mailer.rb where @user is being set.
+  	# ANSWER: I didn't setup my photo_comment factory properly. 
 		it 'sends an email when a user comments on a photo' do
   		expect{ comment.save! }.to change {ActionMailer::Base.deliveries.count }.by(1)
 	  end

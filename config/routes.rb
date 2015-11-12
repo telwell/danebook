@@ -11,6 +11,9 @@ Rails.application.routes.draw do
 	resources :profiles, :only => [:show, :edit, :create, :update] do
     resource :posts, :only => [:show, :create, :destroy]
     resource :search, :only => [:show]
+    
+    # TODO: Shouldn't be nested under profiles b/c it's singular, 
+    # that way we cna remove the logic to protect against viewing other ppls newsfeeds.
     resource :newsfeed, :only => [:show]
     resources :friendships, :only => [:create, :destroy, :index]
     resources :photos, :only => [:index, :new, :create, :show, :destroy]

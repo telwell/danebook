@@ -29,7 +29,7 @@ FactoryGirl.define do
 		factory :user_with_post_comment do
 			after(:create) do |user|
 				post = create( :post, :author_id => user.id )
-				create( :comment, :author_id => user.id, :commentable_id => post.id )
+				create( :comment, :author_id => user.id, :commentable_id => post.id, :commentable_type => "Post" )
 			end
 		end
 
@@ -37,7 +37,7 @@ FactoryGirl.define do
 		factory :user_with_photo_comment do
 			after(:create) do |user|
 				photo = create( :photo, :user_id => user.id )
-				create( :comment, :author_id => user.id, :commentable_id => photo.id )
+				create( :comment, :author_id => user.id, :commentable_id => photo.id, :commentable_type => "Photo" )
 			end
 		end
 

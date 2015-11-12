@@ -96,7 +96,7 @@ describe User do
         # our after_create filter and make two emails!
         
         it 'can send a welcome email' do
-            expect{ user.send_welcome_email }.to change {ActionMailer::Base.deliveries.count }.by(1)
+          expect{ user.send_welcome_email }.to change {ActionMailer::Base.deliveries.count }.by(1)
         end
     end
 	
