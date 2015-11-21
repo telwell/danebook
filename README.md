@@ -1,9 +1,10 @@
-Danebook
-========
+# TrevBook
 
 Implimentation by [Trevor Elwell](http://trevorelwell.me)
+[TrevBook on Heroku](http://trevbook.heroku.com)
 
-Basic Information
-========
+# Intro
+Guest login: 
+**Email:** me@trevorelwell.com
+**Password:** password
 
-[TrevBook on Heroku](http://trevbook.heroku.com)<br>
