@@ -18,6 +18,7 @@ TrevBook is a project that covers a very wide scope, designed to solidify unders
 * CSS
 * Bootstrap
 * Sass
+* Heroku
 * Database Technologies:
   * SQLite3
   * PostgreSQL
