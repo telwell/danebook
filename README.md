@@ -19,23 +19,23 @@ TrevBook is a project that covers a very wide scope, designed to solidify unders
 * Bootstrap
 * Sass
 * Database Technologies:
-*  SQLite3
-*  PostgreSQL
-*  ActiveRecord
+  * SQLite3
+  * PostgreSQL
+  * ActiveRecord
 * Complex Associations: 
-*  Polymorphic Associations (Comments, Likes)
-*  Self-referential Associations (Users)
+  * Polymorphic Associations (Comments, Likes)
+  * Self-referential Associations (Users)
 * Mailers:
-*  Sendgrid
-*  Delayed Jobs
+  * Sendgrid
+  * Delayed Jobs
 * Testing: 
-*  RSpec
-*  Factory Testing (Using `factory_girl`)
-*  Controller Testing
-*  Model Testing
-*  Integration Testing (Using `capybara`)
-*  Mailer Testing
-*  View Testing
+  * RSpec
+  * Factory Testing (Using `factory_girl`)
+  * Controller Testing
+  * Model Testing
+  * Integration Testing (Using `capybara`)
+  * Mailer Testing
+  * View Testing
 * Amazon S3 (with `paperclip`)
 
 # Key Features
